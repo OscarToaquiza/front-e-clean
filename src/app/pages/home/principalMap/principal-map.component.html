@@ -1,0 +1,97 @@
+<div class="right_col" role="main">
+    <div class="title_left">
+        <div class="row">
+            <div class="col-md-6">
+                <h2>Mapa {{nombreSector}}</h2>
+            </div>
+            <div class="col-md-6 text-right">
+                <button routerLink="/epagal/home" class="btn btn-danger">Regresar</button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="x_panel">
+            <div class="x_content">
+                <div class="col-md-9">
+                    <div id="mapa-mapbox-principal">
+                    </div>
+                </div>
+                <div *ngIf="!mostrarGrafica" class="col-md-3">
+                    Cargando...
+                </div>
+                <div *ngIf="mostrarGrafica" class="col-md-3">
+                    <h3> > Información del Sector</h3>
+                    <ul class="list-unstyled msg_list">
+                        <li>
+                            <a>
+                                <span class="image">
+                                    <img src="assets/img/icon_container.png" alt="img">
+                                </span>
+                                <span>
+                                    Contenedores e Islas Soterradas = {{numeroContenedores}}<br>
+                                </span> 
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <span class="image">
+                                    <img src="assets/img/caja-de-reciclaje.svg" alt="img">
+                                </span>
+                                <span>
+                                    <span>Empresas Reciladoras = {{numeroEmpresas}}</span>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <span class="image">
+                                    <img src="assets/img/notificacion.svg" alt="img">
+                                </span>
+                                <span>
+                                    <span>Notificaciones de hoy = {{numeroNotificacionesHoy}}</span>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <span>
+                                    <span>Notificaciones por semana = {{numeroNotificacionesSemana}}</span>
+                                    <br>
+                                    <span *ngFor="let dia of fechasSemana; let i = index" class="bigcheck" [ngStyle]="{'color': dia.esHoy ? 'black' : ''}">
+                                        <label class="bigcheck" style="font-weight: 500;"  >
+                                             {{dia.dia}}
+                                            <input *ngIf="!dia.tachar" type="checkbox" class="bigcheck" [disabled]="dia.tachar" [checked]="dia.esHoy" (change)="getStatus($event, i, dia.fecha)" />
+                                            <span class="bigcheck-target"></span>
+                                        </label>
+                                        <br>
+                                    </span> 
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <span>
+                                    <span> Promedio de notificaciones por semana: <strong>
+                                            {{promedioSemana}}
+                                        </strong> </span>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+
+                    <div>
+                    </div>
+
+                    
+                    <div *ngIf="mostrarGrafica">
+                        <app-grafica-mapa [listaPuntosEjeX]="puntosEjeX" [listaPuntosEjeY]="puntosEjeY" 
+                        [listaColoresBarra]="listaColoresBarra" [listaColoresBarraHover]="listaColoresBarraHover" 
+                        [listaPuntosEjeYResuelto]="puntoEjeYResueltos"
+                        >
+                        </app-grafica-mapa>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

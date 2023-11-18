@@ -1,0 +1,110 @@
+<div class="col-md-3 left_col">
+  <div class="left_col scroll-view">
+    <div class="navbar nav_title" style="border: 0;">
+      <a href="index.html" class="site_title"><i class="fa fa-recycle"></i> <span> Clean Web</span></a>
+    </div>
+    <div class="clearfix"></div>
+
+    <!-- menu profile quick info -->
+    <div class="profile">
+      <div class="profile_pic">
+        <img [src]="rutaImg | imagen: 'usuarios'" alt="nombreUsuario" class="img-circle profile_img" />
+      </div>
+      <div class="profile_info">
+        <span>Bienvenido</span>
+        <h2>{{nombreUsuario}}</h2>
+      </div>
+    </div>
+    <!-- /menu profile quick info -->
+
+    <br />
+
+    <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+      <div class="menu_section">
+        <h3 style="padding-top: 8rem;">Menu General</h3>
+
+        <ul class="nav side-menu">
+          <li routerLinkActive="active">
+            <a id="homeli" (click)="anchorClicked($event)">
+              <i class="fa fa-home"></i> Principal <span id="homechevron" class="fa fa-chevron-down"></span>
+            </a>
+            <ul class="nav child_menu">
+              <li routerLinkActive="current-page">
+                <a routerLink="/epagal/home" routerLinkActive="active">Inicio</a>
+              </li>
+              <li routerLinkActive="current-page">
+                <a routerLink="/epagal/user-profile" routerLinkActive="active">Perfil</a>
+              </li>
+              <li *ngIf="rolUser === 1" routerLinkActive="current-page">
+                <a routerLink="/epagal/list-users" routerLinkActive="active">Usuarios</a>
+              </li>
+            </ul>
+          </li>
+          <li routerLinkActive="active">
+            <a id="formsli" (click)="anchorClicked($event)"><i class="fa fa-edit"></i> Gestión Información <span
+                id="formschevron" class="fa fa-chevron-down"></span></a>
+            <ul class="nav child_menu">
+              <li routerLinkActive="current-page">
+                <a routerLink="/epagal/list-cars" routerLinkActive="active">Vehiculos</a>
+              </li>
+              <li routerLinkActive="current-page">
+                <a routerLink="/epagal/list-types-data" routerLinkActive="active">Tipo Datos</a>
+              </li>
+              <li routerLinkActive="current-page">
+                <a routerLink="/epagal/list-business" routerLinkActive="active">Empresa</a>
+              </li>
+              <li routerLinkActive="current-page">
+                <a routerLink="/epagal/list-containers" routerLinkActive="active">Contenedores</a>
+              </li>
+              <li routerLinkActive="current-page">
+                <a routerLink="/epagal/list-router-car" routerLinkActive="active">Rutas</a>
+              </li>
+              <li routerLinkActive="current-page">
+                <a routerLink="/epagal/list-recycling-process" routerLinkActive="active">Proceso de Reciclaje</a>
+              </li>
+            </ul>
+          </li>
+          <li routerLinkActive="active">
+            <a id="uielementsli" (click)="anchorClicked($event)"><i class="fa fa-desktop"></i> Gestion Servicios<span
+                id="uielementschevron" class="fa fa-chevron-down"></span></a>
+            <ul class="nav child_menu">
+              <li routerLinkActive="current-page">
+                <a routerLink="/epagal/list-news" routerLinkActive="active">Noticias</a>
+              </li>
+              <li routerLinkActive="current-page">
+                <a routerLink="/epagal/list-paperworks" routerLinkActive="active">Tramites</a>
+              </li>
+            </ul>
+          </li>
+          <li routerLinkActive="active">
+            <a id="layoutsli" (click)="anchorClicked($event)"><i class="fa fa-child"></i>Notificaciones <span
+                id="layoutschevron" class="fa fa-chevron-down"></span></a>
+            <ul class="nav child_menu">
+              <li routerLinkActive="current-page">
+                <a routerLink="/epagal/list-notifications" routerLinkActive="active">Lista</a>
+              </li>
+            </ul>
+          </li>
+          <li routerLinkActive="active">
+            <a id="datali" (click)="anchorClicked($event)"><i class="fa fa-bar-chart-o"></i> Estadisticas <span
+                class="fa fa-chevron-down"></span></a>
+            <ul class="nav child_menu">
+              <li routerLinkActive="current-page" >
+                <a  routerLink="/epagal/main-statistics" routerLinkActive="active">Reportes</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="sidebar-footer hidden-small">
+      <button style="background-color: #172D44; color: white;" (click)="salir()"  class="btn btn-block" >
+        Cerrar Sesión
+      </button>
+      <div class="row text-center" >
+        <img src="/assets/img/epgala_logo.png" alt="epagal_logo" width="50%" >
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,33 @@
+<div class="row">
+    <div class="col-md-3 espacio-form ">
+        <label for="selctor">Seleccione Sector:</label>
+        <select class="form-control" name="sector" id="sectorSelecte" (change)="selectOpcion($event)"  >
+            <option value="0">Todos</option>
+            <option *ngFor="let lugar of lugares" [value]="lugar.id_lugar">{{lugar.nombre}}</option>
+        </select>
+    </div>
+    <div class="col-md-3 espacio-form ">
+        <label for="fechaInicio">Fecha inicio:</label>
+        <input type="date" class="form-control" [(ngModel)] = "fechaInicio" >
+    </div>
+    <div class="col-md-3 espacio-form ">
+        <label for="fechaFin">Fecha fin:</label>
+        <input type="date" class="form-control" [(ngModel)] = "fechaFin" >
+    </div>
+    <div class="col-md-3 text-center" style="height: 60px; display: table;">
+        <div style="vertical-align: bottom; display: table-cell;" >
+            <button class="btn btn-info" (click)="buscar()"  >Buscar</button>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div *ngIf="mostrarGrafica" style="display: block;">     
+        <canvas baseChart 
+            [datasets]="barChartData" 
+            [labels]="barChartLabels" 
+            [options]="barChartOptions"
+            [legend]="legendFalse" 
+            chartType="bar">
+        </canvas>
+    </div>
+</div>

@@ -1,0 +1,79 @@
+<div class="right_col">
+    <div class="card"
+        [ngClass]="{ 'card-outline-success': !parametroMostrar, 'card-outline-warning': parametroMostrar  }">
+        <div class="card-header">
+            <h4 class="m-b-0 text-white" *ngIf="!parametroMostrar"> Crear Nueva Noticia</h4>
+            <h4 class="m-b-0 text-white" *ngIf="parametroMostrar && noticia"> Editar Noticia - {{ noticia.id_noticia }}
+            </h4>
+        </div>
+        <div class="card-body">
+            <h4 class="card-title">Datos de la noticia </h4>
+
+            <form id="noticiaForm" [formGroup]="noticiaForm">
+
+                <div class="row">
+                    <div class="col-md-10">
+                        <label for="titulo">Titulo:</label>
+                        <input type="text" id="titulo" class="form-control" formControlName="titulo">
+                    </div>
+                    <div class="col-md-2">
+                        <label for="">Publicada</label>
+                        <div>
+                            <label class="switch">
+                                <input type="checkbox" formControlName="estado">
+                                <span class="slider round"></span>
+                            </label>
+                            <label style="margin-left: 10px;" for="">NO/SI</label>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="detalle">Detalle:</label>
+                        <editor [apiKey]=tinymceKey
+                            initialValue="<p>Detalle de la noticia ...</p>" [init]="{
+                            height: 300,
+                            menubar: false,
+                            plugins: [
+                                'advlist autolink lists link charmap print',
+                                'preview anchor searchreplace visualblocks code',
+                                'fullscreen insertdatetime media image table paste',
+                                'help wordcount'
+                            ],
+                            toolbar:
+                                'undo redo | formatselect | bold italic | \
+                                alignleft aligncenter alignright alignjustify | \
+                                bullist numlist outdent indent table image media | help'
+                             }" id="detalle" formControlName="detalle"></editor>
+        
+                    </div>
+                    <div class="col-md-6">
+                            <label for="iamgen">Imagen Relacionada:</label>
+                            <input id="imagen" type="file" class="form-control" (change)="cambiarImagen($event.target.files[0])" >
+                            <br>
+                            <div class="text-center">
+                                <img *ngIf="noticia && noticia.imagen && !imgTemp" [src]="noticia.imagen | imagen: 'noticias'" style="height: 250px;">
+                                <img *ngIf="imgTemp" [src]="imgTemp" style="height: 250px;">
+                            </div>
+                        
+                    </div>
+                </div>
+
+
+
+                <br>
+             
+               
+                <button *ngIf="!parametroMostrar" type="button" (click)="crearNoticia()" class="btn btn-success m-r-10"
+                    [disabled]="!noticiaForm.valid">Guardar</button>
+                <button *ngIf="parametroMostrar" type="button" (click)="editarNoticia()" class="btn btn-warning m-r-10"
+                    [disabled]="!noticiaForm.valid">Editar</button>
+                <button (click)="irAtras()" type="button" class="btn btn-danger ">Cancelar</button>
+
+            </form>
+
+        </div>
+    </div>
+</div>

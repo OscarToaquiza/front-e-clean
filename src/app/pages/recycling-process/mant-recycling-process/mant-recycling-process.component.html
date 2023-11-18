@@ -1,0 +1,71 @@
+<div class="right_col">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="m-b-0 text-white" *ngIf="!parametroMostrar"> Crear Nuevo Proceso de Reciclaje</h4>
+            <h4 class="m-b-0 text-white" *ngIf="parametroMostrar && proceso"> Editar  Proceso de Reciclaje - {{ proceso.id_proceso_reciclar }}
+            </h4>
+        </div>
+        <div class="card-body">
+            <h4 class="card-title">Datos de la noticia </h4>
+
+            <form id="procesoForm" [formGroup]="procesoForm">
+
+                <div class="row">
+                    <div class="col-md-8">
+                        <label for="titulo">Nombre:</label>
+                        <input type="text" id="nombre" class="form-control" formControlName="nombre">
+                    </div>
+                    <div class="col-md-4 espacio-form ">
+                        <label for="desperdicioSelect">Seleccione desperdicio:</label>
+                        <select class="form-control" name="desperdicioSelect" id="desperdicioSelect" formControlName="id_tipo_desperdicio" >
+                            <option value="">Seleccione uno</option>
+                            <option *ngFor="let desp of listaDesperdiciosSelect" [value]="desp.id_tipo_dato">{{desp.nombre}}</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="detalle">Detalle:</label>
+                        <editor [apiKey]=tinymceKey
+                            initialValue="<p>Detalle del proceso de reciclaje ...</p>" [init]="{
+                            height: 300,
+                            menubar: false,
+                            plugins: [
+                                'advlist autolink lists link charmap print',
+                                'preview anchor searchreplace visualblocks code',
+                                'fullscreen insertdatetime media iamge table paste',
+                                'help wordcount'
+                            ],
+                            toolbar:
+                                'undo redo | formatselect | bold italic | \
+                                alignleft aligncenter alignright alignjustify | \
+                                bullist numlist outdent indent table image media | help'
+                             }" id="detalle" formControlName="detalle_proceso_reciclar"></editor>
+        
+                    </div>
+                    <div class="col-md-6">
+                            <label for="iamgen">Imagen Relacionada:</label>
+                            <input id="imagen" type="file" class="form-control" (change)="cambiarImagen($event.target.files[0])" >
+                            <br>
+                            <div class="text-center">
+                                <img *ngIf="proceso && proceso.imagen && !imgTemp" [src]="proceso.imagen | imagen: 'reciclaje'" style="height: 250px;">
+                                <img *ngIf="imgTemp" [src]="imgTemp" style="height: 250px;">
+                            </div>
+                        
+                    </div>
+                </div>
+
+                <br>             
+               
+                <button *ngIf="!parametroMostrar" type="button" (click)="crearProcesoReciclaje()" class="btn btn-success m-r-10"
+                    [disabled]="!procesoForm.valid">Guardar</button>
+                <button *ngIf="parametroMostrar" type="button" (click)="editarProcesoReciclaje()" class="btn btn-warning m-r-10"
+                    [disabled]="!procesoForm.valid">Editar</button>
+                <button (click)="irAtras()" type="button" class="btn btn-danger ">Cancelar</button>
+
+            </form>
+
+        </div>
+    </div>
+</div>

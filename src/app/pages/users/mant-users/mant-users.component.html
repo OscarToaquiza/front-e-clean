@@ -1,0 +1,79 @@
+<div class="right_col">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="m-b-0 text-white" > Perfil de usuario </h4>
+        </div>
+        <div class="card-body">
+            <form id="userProfileForm" [formGroup]="userProfileForm" >
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="nombre">Nombres:</label>
+                        <input type="text" id="nombre" class="form-control" formControlName="nombre">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="apellido">Apellidos:</label>
+                        <input type="text" id="apellido" class="form-control" formControlName="apellido">
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="cedula">Cédula:</label>
+                        <input type="text" id="cedula" class="form-control" formControlName="cedula" [(ngModel)]="valorCedula">
+                        <br>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="cedula">Rol de usuario:</label>                              
+                                <select name="rol" id="rol" formControlName="rol" class="form-control" >
+                                    <option value="1">ADMINSITRADOR</option>
+                                    <option value="2">TECNICO</option>
+                                    <option value="3">CHOFER</option>
+                                    <option value="4">CIUDADANO</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="telefono">Telefono:</label>
+                                <input type="text" id="telefono" class="form-control" formControlName="telefono">   
+                            </div>
+                        </div>
+                        <br>
+                        <label for="nombre">Puesto Trabajo:</label>
+                        <input type="text" id="puestotrabajo" class="form-control" formControlName="puestotrabajo">
+                        <br>
+                        <label for="nombre">Observacion:</label>
+                        <input type="text" id="observacion" class="form-control" formControlName="observacion">
+        
+                    </div>
+                    <div *ngIf="parametroMostrar" class="col-md-6">
+                            <label for="iamgen">Imagen perfil:</label>
+                            <input id="imagen" type="file" class="form-control" (change)="cambiarImagen($event.target.files[0])" >
+                            <br>
+                            <div class="text-center">
+                                <img *ngIf="usuarioEdit && usuarioEdit.imagen_perfil && !imgTemp" [src]="usuarioEdit.imagen_perfil | imagen: 'usuarios'" style="height: 250px;">
+                                <img *ngIf="imgTemp" [src]="imgTemp" style="height: 250px;">
+                            </div>
+                        
+                    </div>
+                    <div *ngIf="!parametroMostrar" class="col-md-6">
+                        <label for="usuarioform">Usuario:</label>
+                        <input type="text" id="usuario" class="form-control" [value]="valorCedula" disabled >
+                        <br>
+                        <label for="contrasenia">Contraseña:</label>
+                        <input type="text" id="contrasenia" class="form-control" formControlName="contrasenia" >
+        
+                    </div>
+                </div>
+                <br>
+                
+                <button *ngIf="!parametroMostrar" type="button" (click)="crearUsuario()" class="btn btn-success m-r-10"
+                    [disabled]="!userProfileForm.valid">Guardar</button>
+                <button *ngIf="parametroMostrar" type="button" (click)="editarUsuario()" class="btn btn-warning m-r-10"
+                    [disabled]="!userProfileForm.valid">Editar</button>
+                <button (click)="irAtras()" type="button" class="btn btn-danger ">Cancelar</button>
+            </form>
+
+        </div>
+    </div>
+</div>

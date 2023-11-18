@@ -1,0 +1,44 @@
+<div class="right_col" role="main">
+    <div class="title_left">
+        <h2>Estadisticas</h2>
+    </div>
+    <div class="row">
+        <div class="animated flipInY col-lg-3 col-md-3 col-sm-6  ">
+            <div class="tile-stats">
+                <div class="icon"><i class="fa fa-caret-square-o-right"></i>
+                </div>
+                <div class="count">{{totalUsuarios}}</div>
+                <h3>Usuarios Registrados</h3>
+                <p>Número de usuarios registrados en la APP</p>
+            </div>
+        </div>
+        <div class="animated flipInY col-lg-3 col-md-3 col-sm-6  ">
+            <div class="tile-stats">
+                <div class="icon"><i class="fa fa-comments-o"></i>
+                </div>
+                <div class="count">{{totalNotificacionesHoy}}</div>
+                <h3>Hoy {{fechaHoy}}</h3>
+                <p>Notificaciones recibidas </p>
+            </div>
+        </div>
+        <div class="animated flipInY col-lg-3 col-md-3 col-sm-6  ">
+            <div class="tile-stats">
+                <div class="icon"><i class="glyphicon glyphicon-folder-close"></i>
+                </div>
+                <div class="count">{{totalContenedores}}</div>
+                <h3>Número</h3>
+                <p>Contenedores habilitados</p>
+            </div>
+        </div>
+        <!-- <div class="animated flipInY col-lg-3 col-md-3 col-sm-6  ">
+            <div class="tile-stats">
+                <div class="icon"><i class="fa fa-check-square-o"></i>
+                </div>
+                <div class="count">3</div>
+                <h3>Vehiculos</h3>
+                <p>Vehiculos registrados</p>
+            </div>
+        </div> -->
+    </div>
+    <app-report-notification></app-report-notification>
+</div>

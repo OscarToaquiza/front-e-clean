@@ -1,0 +1,10 @@
+<div [ngClass]="{'nav-md': claseNav===0, 'nav-sm': claseNav === 1}" >
+    <div class="container body">
+        <div class="main_container">
+            <side-bar></side-bar>
+            <topnav-bar [estado]="claseNav" (ocultarNav)="changeNav($event)"></topnav-bar>
+            <router-outlet></router-outlet>
+            <custom-footer></custom-footer>
+        </div>
+    </div>
+</div>

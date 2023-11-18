@@ -1,0 +1,64 @@
+<div class="right_col">
+    <div class="card">
+        <div class="card-body">
+
+            <div class="row">
+                <div class="col-6 text-center">
+                    <h3 class="card-title">Lista de Noticias - Total({{totalNoticias}})</h3>
+                </div>
+                <div class="col-6 text-center">
+                  
+                </div>
+            </div>
+            <table mat-table [dataSource]="dataSource" style="width: 100%;">
+
+                <ng-container matColumnDef="id">
+                    <th mat-header-cell *matHeaderCellDef class="w50"> ID </th>
+                    <td mat-cell *matCellDef="let element"> {{element.id_noticia}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="titulo">
+                    <th mat-header-cell *matHeaderCellDef> Titulo </th>
+                    <td mat-cell *matCellDef="let element"> {{element.titulo}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="fecha">
+                    <th mat-header-cell *matHeaderCellDef class="w100" >Fecha creado</th>
+                    <td mat-cell *matCellDef="let element">
+                        {{ element.fecha_creacion }}
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="publicada">
+                    <th mat-header-cell *matHeaderCellDef class="w100" > Publicada</th>
+                    <td mat-cell *matCellDef="let element">
+                        {{ element.estado }}
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="acciones">
+                    <th mat-header-cell *matHeaderCellDef class="w200">
+                        <button type="button" class="btn btn-info" (click)="irCrearNoticia()">
+                            Nuevo
+                        </button>
+                    </th>
+                    <td mat-cell *matCellDef="let element">
+                        <a class="btn btn-warning" [routerLink]="['/epagal/list-news/mant/', element.id_noticia]">
+                            <i class="fa fa-edit"></i> Editar
+                        </a>
+                        <a class="btn btn-danger" (click)="borrarNoticia(element.id_noticia)">
+                            <i class="fa fa-close"></i> Borrar
+                        </a>
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+            </table>
+            <mat-paginator [pageSize]="10" [length]="totalNoticias" showFirstLastButtons
+                (page)="dataPagination($event)">
+            </mat-paginator>
+        </div>
+    </div>
+</div>

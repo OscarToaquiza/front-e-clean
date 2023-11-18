@@ -1,0 +1,26 @@
+<div class="right_col" role="main">
+    <div class="title_left">
+        <h2>Pagina de Inicio</h2>
+    </div>
+    <div class="row">
+        <div class="x_panel">
+            <h4>Seleccione un sector para vizualizar en el mapa</h4>
+            <div class="x_content">
+                <div *ngFor="let sector of lugares" class="col-md-2 col-sm-2 profile_details">
+                    <div class="well profile_view">
+                        <div class="col-sm-12 text-center">
+                            <h2>{{sector.nombre}}</h2>
+                            <p>{{sector.observacion}}</p>
+                        </div>
+                        <div class="bottom text-center">
+                            <button type="button" class="btn btn-success btn-sm" (click)="verMapa(sector.id_lugar, sector.nombre)"> 
+                                <i class="fa fa-eye"></i> Ver en Mapa 
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

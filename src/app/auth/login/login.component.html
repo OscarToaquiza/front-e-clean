@@ -1,0 +1,51 @@
+<div class="login" >
+      <div class="login_wrapper">
+        <div class="animate form login_form">
+          <section class="login_content">
+            <div class="row text-center" >
+              <img src="/assets/img/epgala_logo.png" alt="epagal_logo" width="50%" >
+            </div>
+            <form
+            [formGroup]="loginForm" >
+              <h1>Iniciar Sesión</h1>
+              <div>
+                <input type="text" class="form-control" placeholder="Username" required
+                formControlName="usuario"
+                />
+              </div>
+              <div *ngIf="!loginForm.controls.usuario.status || loginForm.controls.usuario.touched && loginForm.controls.usuario.value.length === 0" class="text-left" >
+                <small class="text-danger"> * Campo obligatorio</small>
+              </div>
+              <div>
+                <input type="password" class="form-control" placeholder="Password" required
+                formControlName="contrasenia"/>
+              </div>
+              <div *ngIf="!loginForm.controls.contrasenia.status || loginForm.controls.contrasenia.touched && loginForm.controls.contrasenia.value.length === 0" class="text-left" >
+                <small class="text-danger"> * Campo obligatorio</small>
+              </div>
+              <div class="msg-error-auth" *ngIf="verMsgError" >
+                <p class="text-danger">{{verMsgError}}</p>
+              </div>
+              <div class="button-auth">
+                <button class="btn btn-default submit" type="button" (click)="login()"
+                  [disabled]="!loginForm.valid"
+                >Ingresar</button>
+                <a class="reset_pass" href="mailto:epagal@latacunga.gob.ec">¿Olvido su contraseña?</a>
+              </div>
+
+              <div class="separator">
+                <p class="change_link">¿Nuevo?
+                  <a routerLink="/epagal/register" class="to_register"> Crear Usuario </a>
+                </p>
+                <br />
+
+                <div>
+                  <h1><i class="fa fa-recycle"></i> Clean Web</h1>
+                  <p>©2021 Empresa Pública de Aseo y Gestión Ambiental Latacunga</p>
+                </div>
+              </div>
+            </form>
+          </section>
+        </div>
+      </div>
+    </div>

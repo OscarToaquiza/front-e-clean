@@ -1,0 +1,50 @@
+<div class="right_col">
+
+    <div class="row">
+        <div class="col-6 text-center">
+            <h3 class="card-title">Lista de Rutas de Recoleccón - Total({{totalRutas}})</h3>
+        </div>
+        <div class="col-6 text-center">
+
+        </div>
+    </div>
+    <table mat-table [dataSource]="dataSource" style="width: 100%;">
+
+        <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef class="w50"> ID </th>
+            <td mat-cell *matCellDef="let element"> {{element.id_cabecera_ruta}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="nombre">
+            <th mat-header-cell *matHeaderCellDef> Nombre </th>
+            <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="dias-ruta">
+            <th mat-header-cell *matHeaderCellDef>Dias Ruta</th>
+            <td mat-cell *matCellDef="let element">
+                {{ element.diasrutas }}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="acciones">
+            <th mat-header-cell *matHeaderCellDef class="w200">
+                <button type="button" class="btn btn-info" (click)="goCreateRoutercar()">
+                    Nuevo
+                </button>
+            </th>
+            <td mat-cell *matCellDef="let element">
+                <a class="btn btn-success"
+                    [routerLink]="['/epagal/list-router-car/mant/', element.id_cabecera_ruta]">
+                    <i class="fa fa-eye"></i> Ver
+                </a>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    </table>
+    <mat-paginator [pageSize]="10" [length]="totalRutas" showFirstLastButtons (page)="dataPagination($event)">
+    </mat-paginator>
+</div>

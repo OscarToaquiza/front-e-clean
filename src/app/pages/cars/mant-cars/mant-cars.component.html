@@ -1,0 +1,76 @@
+<div class="right_col">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="m-b-0 text-white" *ngIf="!parametroMostrar"> Crear Vehiculo</h4>
+            <h4 class="m-b-0 text-white" *ngIf="parametroMostrar && car"> Editar Vehiculo - {{ car.id_vehiculo }}
+            </h4>
+        </div>
+        <div class="card-body">
+            <h4 class="card-title">Datos de la Vehiculo </h4>
+
+            <form id="noticiaForm" [formGroup]="carForm">
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <label for="titulo">*Placa:</label>
+                        <input type="text" id="placa" class="form-control" formControlName="placa">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="titulo">Modelo:</label>
+                        <input type="text" id="modelo" class="form-control" formControlName="modelo">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="titulo">Marca:</label>
+                        <input type="text" id="marca" class="form-control" formControlName="marca">
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-3">
+                        <label for="titulo">Estado:</label>
+                        <input type="text" id="estado" class="form-control" formControlName="estado">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="titulo">Estado Físico:</label>
+                        <input type="text" id="estado_fisico" class="form-control" formControlName="estado_fisico">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="titulo">Observación:</label>
+                        <input type="text" id="observacion" class="form-control" formControlName="observacion">
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-12">
+
+                        <label for="detalle">Detalle:</label>
+                        <editor [apiKey]=tinymceKey
+                        initialValue="<p>Detalle de la noticia ...</p>" [init]="{
+                            height: 300,
+                            menubar: false,
+                            plugins: [
+                            'advlist autolink lists link charmap print',
+                                'preview anchor searchreplace visualblocks code',
+                                'fullscreen insertdatetime media image table paste',
+                                'help wordcount'
+                            ],
+                            toolbar:
+                            'undo redo | formatselect | bold italic | \
+                            alignleft aligncenter alignright alignjustify | \
+                            bullist numlist outdent indent table image media | help'
+                        }" id="detalle" formControlName="detalle"></editor>
+                        
+                    </div>
+                </div>
+                <br>
+                <button *ngIf="!parametroMostrar" type="button" (click)="crearCar()" class="btn btn-success m-r-10"
+                    [disabled]="!carForm.valid">Guardar</button>
+                <button *ngIf="parametroMostrar" type="button" (click)="editarCar()" class="btn btn-warning m-r-10"
+                    [disabled]="!carForm.valid">Editar</button>
+                <button (click)="irAtras()" type="button" class="btn btn-danger ">Cancelar</button>
+
+            </form>
+
+        </div>
+    </div>
+</div>

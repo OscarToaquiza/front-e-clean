@@ -1,0 +1,30 @@
+<!-- top navigation -->
+<div class="top_nav">
+  <div class="nav_menu">
+    <nav>
+      <div class="nav toggle">
+        <a id="menu_toggle" (click)="toggleClicked($event)"><i class="fa fa-bars"></i></a>
+      </div>
+
+      <ul *ngIf="usuario" class="nav navbar-nav navbar-right">
+        <li class="">
+
+          <a href="javascript:;" class="user-profile dropdown-toggle" (click)="verDataUserButton()" data-toggle="dropdown" aria-expanded="false">
+            <img src="assets/img.png" alt="user_default_epagal" />
+            {{usuario.apellido}}
+            <span class=" fa fa-angle-down"></span>
+          </a>
+          <ul class="dropdown-menu dropdown-usermenu pull-right" [ngClass]="{'show':verDataUser}" >
+            <li><a routerLink="/epagal/user-profile"> <i class="fa fa-user pull-right"></i> Perfil</a></li>
+            <li><a href="mailto:epagal@latacunga.gob.ec">Ayuda</a></li>
+            <li>
+              <a (click)="salir()" ><i class="fa fa-sign-out pull-right"></i> Salir</a>
+            </li>
+          </ul>
+        </li>
+
+      </ul>
+    </nav>
+  </div>
+</div>
+<!-- /top navigation -->

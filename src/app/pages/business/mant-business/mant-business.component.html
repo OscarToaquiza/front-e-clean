@@ -1,0 +1,117 @@
+<div class="right_col">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="m-b-0 text-white" *ngIf="!parametroMostrar"> Crear Nueva Empresa Recicladora</h4>
+            <h4 class="m-b-0 text-white" *ngIf="parametroMostrar && business"> Editar Empresa Recicladora - {{
+                business.id_empresa_recicladora }}
+            </h4>
+        </div>
+        <div class="card-body">
+            <h4 class="card-title">Datos de la Empresa Recicladora </h4>
+
+            <form id="noticiaForm" [formGroup]="businessForm">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="titulo">Nombre:</label>
+                        <input type="text" id="titulo" class="form-control" formControlName="nombre">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="telefono" >Telefono:</label>
+                        <input type="text" id="telefono" class="form-control" formControlName="telefono">
+                    </div>
+                    <div class="col-md-12">
+                        <label for="direccion" class="espacio-form">Dirección:</label>
+                        <input type="text" id="direccion" class="form-control" formControlName="direccion">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 espacio-form ">
+                        <label for="desperdicioSelect">Seleccione desperdicio:</label>
+                        <select class="form-control" name="desperdicioSelect" id="desperdicioSelect" (change)="selectOpcion($event)" >
+                            <option *ngFor="let desp of listaDesperdiciosSelect" [value]="desp.id_tipo_dato">{{desp.nombre}}</option>
+                        </select>
+                    </div>
+                    <div class="col-md-8 espacio-form ">
+                        <label for="desperdicio">Lista de desperdicios que recicla la empresa</label>
+                        <div class="espacio-form" >
+                            <span *ngFor="let tipoDesp of listaTiposDesperdiciosForm" 
+                                class="margen-lateral" 
+                                [ngClass]="{'text-success-css': tipoDesp.id_empresa_tipo_desperdicio !== null, 'text-primary-css' : tipoDesp.id_empresa_tipo_desperdicio === null }"  
+                                > 
+                                {{tipoDesp.nombre}} <i class="fa fa-close" (click)="borrarTipoDesperdicio(tipoDesp.id_empresa_tipo_desperdicio, tipoDesp.id_tipo_desperdicio)" ></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <label for="detalle">Detalle:</label>
+                        <editor [apiKey]=tinymceKey
+                            initialValue="<p>Detalle de la empresa reciladora ...</p>" [init]="{
+                            height: 300,
+                            menubar: false,
+                            plugins: [
+                                'advlist autolink lists link charmap print',
+                                'preview anchor searchreplace visualblocks code',
+                                'fullscreen insertdatetime media image table paste',
+                                'help wordcount'
+                            ],
+                            toolbar:
+                                'undo redo | formatselect | bold italic | \
+                                alignleft aligncenter alignright alignjustify | \
+                                bullist numlist outdent indent table image media | help'
+                             }" id="detalle" formControlName="detalle"></editor>
+        
+                    </div>
+                </div>
+
+            </form>
+            <br>
+            <div class="row">
+                <div class="col-md-2">
+                    <label for="titulo">Coordenadas</label>
+                    <div>
+                        <p>
+                            Ubicar el marcador en la posición a guardar
+                        <p>
+                            <i class="fa fa-question mano" matTooltip="Mantener click derecho y mover sobre el mapa"></i>
+                            Girar mapa
+                        </p>
+                        <p>
+                            <i class="fa fa-question mano" matTooltip="Utilizar scroll sobre el mapa"></i> 
+                            Acercar/alejar mapa 
+                        </p>
+                      
+
+                    </div>
+                    <label for="titulo">Longitud:</label>
+                    <input type="text" id="longitudMapEpagal" class="form-control" [(ngModel)]="longitudMapa">
+                    <br>
+                    <label for="titulo">Latitud:</label>
+                    <input type="text" id="latitudMapEpagal" class="form-control" [(ngModel)]="latitudMapa">
+                    <br>
+
+                </div>
+                <div class="col-md-10">
+                    <label for="titulo">Referencia Geográfica:</label>
+                    MAPA- MAPBOX
+                    <div id="mapa-mapbox">
+                    </div>
+                </div>
+            </div>
+
+
+            <br>
+
+
+            <button *ngIf="!parametroMostrar" type="button" (click)="createBusiness()" class="btn btn-success m-r-10"
+                [disabled]="!businessForm.valid">Guardar</button>
+            <button *ngIf="parametroMostrar" type="button" (click)="editBusiness()" class="btn btn-warning m-r-10"
+                [disabled]="!businessForm.valid">Editar</button>
+            <button (click)="irAtras()" type="button" class="btn btn-danger ">Cancelar</button>
+
+
+
+        </div>
+    </div>
+</div>

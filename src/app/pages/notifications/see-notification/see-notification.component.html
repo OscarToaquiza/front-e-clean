@@ -1,0 +1,42 @@
+<div class="right_col">
+    <h4 class="card-title">Datos de la notificación recibida</h4>
+    <div *ngIf="notificacion" class="row">
+        <div class="col-md-6">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Identificador - {{notificacion.id_notificacion_problema}}</h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <div class="dashboard-widget-content">
+                        <div class="hidden-small">
+                            <h2 class="line_30">Descripción</h2>
+                            <p>
+                                {{notificacion.descripcion}}
+                            </p>
+                            <h4>Fecha notificación: {{ notificacion.fecha }}</h4>
+                            <h4>Tipo notificación: {{notificacion.nombre_tipo}}</h4>
+                            <h4>Usuario notificador: <small>
+                                {{notificacion.apellido}} {{notificacion.nombre}}
+                            </small></h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 text-center">
+            <h3>Imagen/Foto enviada por el Usuario {{notificacion.id_usuario}}</h3>
+            <img *ngIf="notificacion" [src]="notificacion.imagen | imagen: 'notificaciones'" style="height: 250px;">
+        </div>
+    </div>
+
+    <div  class="row">
+        <div  class="col-md-12">
+            <h2 *ngIf="notificacion" class="line_30">Ubicación geografica <small>Longtud: {{notificacion.longitud}} Latitud:
+                    {{notificacion.latitud}} </small></h2>
+            <div id="mapa-notificacion">
+            </div>
+        </div>
+    </div>
+
+</div>

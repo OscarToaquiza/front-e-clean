@@ -1,0 +1,66 @@
+<div class="right_col">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="m-b-0 text-white" *ngIf="!parametroMostrar"> Crear Ruta de Recolección</h4>
+            <h4 class="m-b-0 text-white" *ngIf="parametroMostrar"> Editar Ruta de Recolección </h4>
+        </div>
+        <div class="card-body">
+            <h4 class="card-title">Datos de la ruta </h4>
+            <form id="routerCarForm" [formGroup]="routerCarForm">
+                <div class="row">
+                    <div class="col-md-4">
+                        <label for="titulo">Nombre:</label>
+                        <input type="text" id="titulo" class="form-control" formControlName="nombre" required>
+                    </div>
+
+                    <div class="col-md-8 ">
+                        <label for="titulo">Dias ruta y horarios:</label>
+                        <input type="text" id="titulo" class="form-control" formControlName="diasrutas" required>
+                    </div>
+                  
+                    <div *ngIf="!parametroMostrar" class="col-md-5">
+                        <label class="espacio-form" for="titulo">Referencia Principal (Azul)</label>
+                        <div>
+                            LNG: {{longitudMapa}}
+                            LAT: {{latitudMapa}}
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="espacio-form" for="titulo">Ayuda</label>
+                        <p>
+                            <i class="fa fa-question mano"
+                                matTooltip="Mantener click derecho y mover sobre el mapa"></i>
+                            Girar mapa | 
+                            <i class="fa fa-question mano" matTooltip="Utilizar scroll sobre el mapa"></i>
+                            Acercar/alejar mapa
+                        </p>
+                    </div>
+                </div>
+            </form>
+            <br>
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="titulo">Puntos Geográficos:</label>
+                    MAPA- MAPBOX
+                </div> 
+                <div *ngIf="!parametroMostrar" class="col-md-6" style="text-align: end;" >
+                    <button (click)="addMarkerList()" class="btn btn-sm btn-primary">
+                        Agregar Marcador Ruta
+                    </button>
+                    <button (click)="dibujarRuta()" class="btn btn-sm btn-primary">
+                        Dibujar Ruta
+                    </button>
+                </div>
+                <div id="mapa-mapbox-rutas">
+                </div>
+            </div>
+            <br>
+            <button *ngIf="!parametroMostrar" type="button" (click)="createRouterCar()" class="btn btn-success m-r-10"
+                [disabled]="!routerCarForm.valid">Guardar</button>
+            <!-- <button *ngIf="parametroMostrar" type="button" (click)="editBusiness()" class="btn btn-warning m-r-10"
+                [disabled]="!businessForm.valid">Editar</button> -->
+            <button (click)="irAtras()" type="button" class="btn btn-danger ">Cancelar</button>
+
+        </div>
+    </div>
+</div>

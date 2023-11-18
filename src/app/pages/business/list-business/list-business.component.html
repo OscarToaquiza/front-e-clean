@@ -1,0 +1,64 @@
+<div class="right_col">
+    <div class="card">
+        <div class="card-body">
+
+            <div class="row">
+                <div class="col-6 text-center">
+                    <h3 class="card-title">Lista de Empresas Recicladoras - Total({{totalEmpresas}})</h3>
+                </div>
+                <div class="col-6 text-center">
+                  
+                </div>
+            </div>
+            <table mat-table [dataSource]="dataSource" style="width: 100%;">
+
+                <ng-container matColumnDef="id">
+                    <th mat-header-cell *matHeaderCellDef class="w50"> ID </th>
+                    <td mat-cell *matCellDef="let element"> {{element.id_empresa_recicladora}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="nombre">
+                    <th mat-header-cell *matHeaderCellDef> Titulo </th>
+                    <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="direccion">
+                    <th mat-header-cell *matHeaderCellDef >Dirección</th>
+                    <td mat-cell *matCellDef="let element">
+                        {{ element.direccion }}
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="sector">
+                    <th mat-header-cell *matHeaderCellDef >Sector</th>
+                    <td mat-cell *matCellDef="let element">
+                        {{ element.sector }}
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="acciones">
+                    <th mat-header-cell *matHeaderCellDef class="w200">
+                        <button type="button" class="btn btn-info" (click)="irCreateBusiness()">
+                            Nuevo
+                        </button>
+                    </th>
+                    <td mat-cell *matCellDef="let element">
+                        <a class="btn btn-warning" [routerLink]="['/epagal/list-business/mant/', element.id_empresa_recicladora]">
+                            <i class="fa fa-edit"></i> Editar
+                        </a>
+                        <!-- <a class="btn btn-danger" (click)="borrarNoticia(element.id_noticia)">
+                            <i class="fa fa-close"></i> Borrar
+                        </a> -->
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+            </table>
+            <mat-paginator [pageSize]="10" [length]="totalEmpresas" showFirstLastButtons
+                (page)="dataPagination($event)">
+            </mat-paginator>
+        </div>
+    </div>
+</div>

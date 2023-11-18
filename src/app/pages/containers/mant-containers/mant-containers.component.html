@@ -1,0 +1,111 @@
+<div class="right_col">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="m-b-0 text-white" *ngIf="!parametroMostrar"> Crear Nuevo Contenedor</h4>
+            <h4 class="m-b-0 text-white" *ngIf="parametroMostrar && container"> Editar Contenedor - {{
+                container.id_almacenaje_reciduo }}
+            </h4>
+        </div>
+        <div class="card-body">
+            <h4 class="card-title">Datos del Contenedor </h4>
+
+            <form id="noticiaForm" [formGroup]="containerForm">
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <label for="nombre">Código:</label>
+                        <input type="text" id="nombre" class="form-control" formControlName="nombre">
+                    </div>
+                    <div class="col-md-2">
+                        <label for="capacidad">Capacidad:</label>
+                        <input type="text" id="capacidad" class="form-control" formControlName="capacidad">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="tipo_contenedor">Tipo:</label>
+                        <select name="tipo_contenedor" id="tipo_contenedor" formControlName="tipo" class="form-control" >
+                            <option value="1">Contenedor</option>
+                            <option value="2">Isla Soterrada</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="estado">Estado</label>
+                        <div>
+                            <label class="switch">
+                                <input type="checkbox" formControlName="estado">
+                                <span class="slider round"></span>
+                            </label>
+                            <label style="margin-left: 10px;" for="">Desabilitado/Habilitado</label>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="col-md-12">
+                        <label for="detalle">Detalle:</label>
+                        <editor [apiKey]=tinymceKey
+                            initialValue="<p>Detalle del contenedor ...</p>" [init]="{
+                            height: 250,
+                            menubar: false,
+                            plugins: [
+                                'advlist autolink lists link charmap print',
+                                'preview anchor searchreplace visualblocks code',
+                                'fullscreen insertdatetime media image table paste',
+                                'help wordcount'
+                            ],
+                            toolbar:
+                                'undo redo | formatselect | bold italic | \
+                                alignleft aligncenter alignright alignjustify | \
+                                bullist numlist outdent indent table image media | help'
+                             }" id="detalle" formControlName="detalle"></editor>
+        
+                    </div>
+                </div>
+
+            </form>
+            <br>
+            <div class="row">
+                <div class="col-md-2">
+                    <label for="titulo">Coordenadas</label>
+                    <div>
+                        <p>
+                            Ubicar el marcador en la posición a guardar
+                        <p>
+                            <i class="fa fa-question mano" matTooltip="Mantener click derecho y mover sobre el mapa"></i>
+                            Girar mapa
+                        </p>
+                        <p>
+                            <i class="fa fa-question mano" matTooltip="Utilizar scroll sobre el mapa"></i> 
+                            Acercar/alejar mapa 
+                        </p>
+                      
+
+                    </div>
+                    <label for="titulo">Longitud:</label>
+                    <input type="text" id="longitudMapEpagal" class="form-control" [(ngModel)]="longitudMapa">
+                    <br>
+                    <label for="titulo">Latitud:</label>
+                    <input type="text" id="latitudMapEpagal" class="form-control" [(ngModel)]="latitudMapa">
+                    <br>
+
+                </div>
+                <div class="col-md-10">
+                    <label for="titulo">Referencia Geográfica:</label>
+                    MAPA- MAPBOX
+                    <div id="mapa-mapbox">
+                    </div>
+                </div>
+            </div>
+
+
+            <br>
+
+
+            <button *ngIf="!parametroMostrar" type="button" (click)="createContainer()" class="btn btn-success m-r-10"
+                [disabled]="!containerForm.valid">Guardar</button>
+            <button *ngIf="parametroMostrar" type="button" (click)="editContainer()" class="btn btn-warning m-r-10"
+                [disabled]="!containerForm.valid">Editar</button>
+            <button (click)="irAtras()" type="button" class="btn btn-danger ">Cancelar</button>
+
+
+
+        </div>
+    </div>
+</div>

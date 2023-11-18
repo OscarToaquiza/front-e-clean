@@ -1,0 +1,57 @@
+<div class="right_col">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="m-b-0 text-white" *ngIf="!parametroMostrar"> Crear Nueva información Trámite</h4>
+            <h4 class="m-b-0 text-white" *ngIf="parametroMostrar && paperwork"> Editar Trámite - {{ paperwork.id_tramite }}
+            </h4>
+        </div>
+        <div class="card-body">
+            <h4 class="card-title">Datos del Tramite </h4>
+
+            <form id="paperworkForm" [formGroup]="paperworkForm">
+
+                <div class="row">
+                    <div class="col-md-8">
+                        <label for="titulo"> * Nombre:</label>
+                        <input type="text" id="nombre" class="form-control" formControlName="nombre">
+                    </div>
+                    <div class="col-md-4">
+                        <p>
+                            Esta información ayuda al usuario a conocer los requisitos y el proceso correcto de los tramites a realizar. 
+                        </p>
+                    </div>
+                    <div class="col-md-12 espacio-form">
+                        <label for="detalles"> * Detalle / Información del proceso:</label>
+                        
+                        <editor [apiKey]=tinymceKey
+                            initialValue="<p>Detalle de la noticia ...</p>" [init]="{
+                                height: 300,
+                                menubar: false,
+                                plugins: [
+                                'advlist autolink lists link charmap print',
+                                'preview anchor searchreplace visualblocks code',
+                                'fullscreen insertdatetime media image table paste',
+                                'help wordcount'
+                                ],
+                                toolbar:
+                                'undo redo | formatselect | bold italic | \
+                                alignleft aligncenter alignright alignjustify | \
+                                bullist numlist outdent indent table image media | help'
+                            }" id="detalle" formControlName="detalles"></editor>
+                            
+                        </div>
+                </div>
+
+                <br>
+                           
+                <button *ngIf="!parametroMostrar" type="button" (click)="crearPaperwork()" class="btn btn-success m-r-10"
+                    [disabled]="!paperworkForm.valid">Guardar</button>
+                <button *ngIf="parametroMostrar" type="button" (click)="editarPaperwork()" class="btn btn-warning m-r-10"
+                    [disabled]="!paperworkForm.valid">Editar</button>
+                <button (click)="irAtras()" type="button" class="btn btn-danger ">Cancelar</button>
+
+            </form>
+
+        </div>
+    </div>
+</div>

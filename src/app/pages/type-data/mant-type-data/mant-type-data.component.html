@@ -1,0 +1,57 @@
+
+<div class="right_col">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="m-b-0 text-white" *ngIf="!parametroMostrar"> Crear Tipo Dato</h4>
+            <h4 class="m-b-0 text-white" *ngIf="parametroMostrar && tipoDatoEdit"> Editar Tipo Dato - {{ tipoDatoEdit.id_tipo_dato }}
+            </h4>
+        </div>
+        <div class="card-body">
+            <h4 class="card-title">Datos de la Vehiculo </h4>
+
+            <form id="noticiaForm" [formGroup]="typeDatForm">
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <label for="titulo">*Nombre:</label>
+                        <input type="text" id="nombre" class="form-control" formControlName="nombre">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="tipo">Tipo:</label>                         
+                        <select name="tipo" id="tipo" formControlName="tipo" class="form-control" >
+                            <option value="" >Seleecione un tipo</option>
+                            <option value="1">Notificación</option>
+                            <option value="2">Servicio</option>
+                            <option value="3">Desperdicio</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="">Estado</label>
+                        <div>
+                            <label class="switch">
+                                <input type="checkbox" formControlName="estado">
+                                <span class="slider round"></span>
+                            </label>
+                            <label style="margin-left: 10px;" for="">NO/SI</label>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-12">
+                        <label for="titulo">Observación/Detalle:</label>
+                        <input type="text" id="observacion" class="form-control" formControlName="observacion">
+                    </div>
+                </div>
+                <br>
+                <button *ngIf="!parametroMostrar" type="button" (click)="crearTypeData()" class="btn btn-success m-r-10"
+                    [disabled]="!typeDatForm.valid">Guardar</button>
+                <button *ngIf="parametroMostrar" type="button" (click)="editarTypeData()" class="btn btn-warning m-r-10"
+                    [disabled]="!typeDatForm.valid">Editar</button>
+                <button (click)="irAtras()" type="button" class="btn btn-danger ">Cancelar</button>
+
+            </form>
+
+        </div>
+    </div>
+</div>

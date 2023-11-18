@@ -1,0 +1,9 @@
+#mapa-mapbox{
+    width: 100%;
+    height: 300px;
+    background-color: aqua;
+}
+
+.mano :hover{
+    cursor: pointer;
+}

@@ -1,0 +1,56 @@
+<div class="login" >
+    <div class="login_wrapper">
+      <div class="animate form login_form">
+        <section class="login_content">
+          <div class="row text-center" >
+            <img src="/assets/img/epgala_logo.png" alt="epagal_logo" width="50%" >
+          </div>
+          <form id="registerForm" [formGroup]="registerForm">
+            <h1>Crear Usuario</h1>
+            <div>
+              <input type="text" class="form-control" placeholder="Nombres" required  formControlName="nombre"/>
+              <div *ngIf="!registerForm.controls.nombre.status || registerForm.controls.nombre.touched && registerForm.controls.nombre.value.length === 0" class="text-left" >
+                <small class="text-danger"> * Campo obligatorio</small>
+              </div>
+            </div>
+            <div>
+              <input type="text" class="form-control" placeholder="Apellidos" required  formControlName="apellido"/>
+              <div *ngIf="!registerForm.controls.apellido.status || registerForm.controls.apellido.touched && registerForm.controls.apellido.value.length === 0" class="text-left" >
+                <small class="text-danger"> * Campo obligatorio</small>
+              </div>
+            </div>
+            <div>
+              <input type="text" class="form-control" placeholder="Username" required formControlName="usuario" />
+              <div *ngIf="!registerForm.controls.usuario.status || registerForm.controls.usuario.touched && registerForm.controls.usuario.value.length === 0" class="text-left" >
+                <small class="text-danger"> * Campo obligatorio</small>
+              </div>
+            </div>          
+            <div>
+              <input type="password" class="form-control" placeholder="Password" required  formControlName="contrasenia"/>
+              <div *ngIf="!registerForm.controls.contrasenia.status || registerForm.controls.contrasenia.touched && registerForm.controls.contrasenia.value.length === 0" class="text-left" >
+                <small class="text-danger"> * Campo obligatorio</small>
+              </div>
+            </div>
+            <div class="msg-error-auth" *ngIf="verMsgError" >
+              <p class="text-danger">{{verMsgError}}</p>
+            </div>
+            <div>
+              <button class="btn btn-default submit " type="button" (click)="crearUsuario()" [disabled]="!registerForm.valid" >Enviar Datos</button>
+            </div>
+            
+            <div class="separator">
+              <p class="change_link">¿Ya tienes cuenta?
+                <a routerLink="/epagal/login" class="to_register"> Iniciar Sesión </a>
+              </p>
+              <br />
+
+              <div>
+                <h1><i class="fa fa-recycle"></i> Clean Web</h1>
+                <p>©2021 Empresa Pública de Aseo y Gestión Ambiental Latacunga</p>
+              </div>
+            </div>
+          </form>
+        </section>
+      </div>
+    </div>
+  </div>
